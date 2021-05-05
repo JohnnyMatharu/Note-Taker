@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 // the above code has been added by me
+//Check: const PORT = process.env.PORT || 3001;
+//Check middleware: app.use(express.urlencoded({ extended: false }));
+//app.use(express.json());
+//may also need to connect database by require database, check previou module (as its not mysql)
+
+
 
 
 let noteTitle;
@@ -31,6 +37,22 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+//main GET data, the following has been added 
+
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Hello World'
+  });
+});
+
+
+// Default response for any other request (Not Found)
+app.use((req, res) => {
+  res.status(404).end();
+});
+
+
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
@@ -38,6 +60,8 @@ const getNotes = () =>
       'Content-Type': 'application/json',
     },
   });
+
+//main POST data 
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -47,6 +71,8 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
+
+//main delete
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -187,6 +213,43 @@ if (window.location.pathname === '/notes') {
 
 getAndRenderNotes();
 
+
+//added to activate the port so its listening to requests
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
+/*Possible route entry (not sure, check all sources)
+Lines
+
+7
+29
+37
+46
+122
+167
+175
+
+Module 11.1.1
+setup Heroku, make sure url deployed, make sure not to be loaded each time, if not what things need loaded each time
+History: root of assignment file -loaded express, npm install, npm start, npm init, gitignore modules (double check which ones are necessary for Express, check ["start": "node server.js"] under test on package.json )
+
+Please make sure the following
+(window.location.pathname === '/notes')
+Make sure connection of node.js with express.js to make sure no initial steps are missed
+
+Make sure we don't need server.js file, askbcs and show errors, make sure connection is there by end of day
+https://www.google.com/search?q=can+we+start+serverf+from+index.js&rlz=1C5CHFA_enCA860CA860&oq=can+we+start+serverf+from+index.js&aqs=chrome..69i57j33i10i160l2.9047j0j15&sourceid=chrome&ie=UTF-8
+Module: 12.2.4, Review the server.js File and previous chp, all should be running
+*/
+
+
+
+
+
+
 /*
 Acceptance criteria
 
@@ -252,7 +315,6 @@ HTML routes: start index.html display, call other html after start(get started),
 Mainly doing 4 things, all else is ready
 1. set your API routes and HTML routes
 2. write ad read DB json using fs read and write, delete (connections) using DB json and front end
-3. setting up the server
 set connetions will activate everything as css file is large, consult module
 
 Heather:
