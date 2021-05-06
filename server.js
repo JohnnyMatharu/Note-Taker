@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path');
 const app = express()
 const port = process.env.PORT || 8080;
+const { db } = require('./Develop/db/db.json');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,20 +16,52 @@ app.get('/', function(req, res) {
 app.get('/notes', function(req, res) {
     res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
   });
-//GET
-app.get('/api/notes',(req,res)=>{
-  console.log("hello");
-  
-  })
-//POST route
-//'/api/notes'
 
+//app.get('/api/animals', (req, res) => {
+  //res.send('Hello!');
+//});
+//this is in module and animals is the json storage file
+
+
+//GET
+app.get('/api/db',(req,res)=>{
+  return res.json(db);
+  console.log(req.query);
+
+})
+
+//thats how it was before 
+//app.get('/api/notes',(req,res)=>{
+//  return res.json("Hello"); 
+//}),
+
+
+//POST
+
+app.post('/api/db',(req,res)=>{
+  res.json(req.body);
+  
+    })
+
+
+//POST before 
+//app.post('/api/notes',(req,res)=>{
+  //res.json(req.body);
+  
+//})
 
 //DELETE
   app.delete('/api/notes/:id', function (req, res) {
-    console.log(req.params);
+    console.log(req.params.id);
   
   })
+
+
+
+
+
+
+
 
 app.listen(port);
 console.log('Server started at http://localhost:' + port);
