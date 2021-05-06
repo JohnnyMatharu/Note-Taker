@@ -1,13 +1,8 @@
-const express = require('express');
-const app = express();
-const PORT = 3000;
 // the above code has been added by me
 //Check: const PORT = process.env.PORT || 3001;
 //Check middleware: app.use(express.urlencoded({ extended: false }));
 //app.use(express.json());
 //may also need to connect database by require database, check previou module (as its not mysql)
-
-
 
 let noteTitle;
 let noteText;
@@ -39,19 +34,7 @@ let activeNote = {};
 //main GET data, the following has been added 
 
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Hello World'
-  });
-});
-
-
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-  res.status(404).end();
-});
-
-
+//go to path and make request
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
@@ -215,9 +198,6 @@ getAndRenderNotes();
 
 //added to activate the port so its listening to requests
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
 
 
 /*Possible route entry (not sure, check all sources)
@@ -310,9 +290,8 @@ DELETE /api/notes/:id should receive a query parameter containing the id of a no
 
 
 Neil:
-HTML routes: start index.html display, call other html after start(get started), sertup server to port
-Mainly doing 4 things, all else is ready
-1. set your API routes and HTML routes
+Mainly doing few things, all else is ready
+1. set your API routes
 2. write ad read DB json using fs read and write, delete (connections) using DB json and front end
 set connetions will activate everything as css file is large, consult module
 
@@ -322,5 +301,3 @@ Lading page is get started,
 In develop in public this 2nd page, just create backend
 Add note , dave icon, no edit needed, just make sure save it and display back on page, pencil is reset on right, Get started will help to get started, url of deployed app is for heroic and 2nd for GitHub, notes will show in db.json, each note has unique id, to generate id, npm package, or own way, 
 */
-
-
