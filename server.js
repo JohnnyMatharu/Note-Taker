@@ -32,9 +32,14 @@ app.get('/api/notes',(req,res)=>{
     res.json(notes);
     console.log(notes);
 
-    fs.writeFile('/api/notes', notes);
 });
 });
+
+//fs.writeFile('//api//notes', (notes) =>{
+
+//}
+  //  )
+
 
 
 
@@ -47,8 +52,26 @@ app.get('/api/notes',(req,res)=>{
 //POST
 
 app.post('/api/notes',(req,res)=>{
-  res.json(req.body);
-    })
+console.log (req.body)
+  fs.readFile("./Develop/db/db.json", (err, data) => {
+    if (err) throw err;
+    const notes = JSON.parse(data);
+    notes.push(req.body);
+console.log(notes);
+JSON.stringify(notes);
+
+  fs.writeFile("./Develop/db/db.json", data, function (err) {
+    res.json(notes);
+    if (err) {
+    console.log(err);
+    }
+});
+});
+})
+
+
+
+  
 
 
 //POST before 
