@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express')
 const path = require('path');
 const app = express()
@@ -24,11 +25,18 @@ app.get('/notes', function(req, res) {
 
 
 //GET
-app.get('/api/db',(req,res)=>{
-  return res.json(db);
-  console.log(req.query);
+app.get('/api/notes',(req,res)=>{
+  fs.readFile("./Develop/db/db.json", (err, data) => {
+    if (err) throw err;
+    const notes = JSON.parse(data);
+    res.json(notes);
+    console.log(notes);
 
-})
+    fs.writeFile('/api/notes', notes);
+});
+});
+
+
 
 //thats how it was before 
 //app.get('/api/notes',(req,res)=>{
@@ -38,9 +46,8 @@ app.get('/api/db',(req,res)=>{
 
 //POST
 
-app.post('/api/db',(req,res)=>{
+app.post('/api/notes',(req,res)=>{
   res.json(req.body);
-  
     })
 
 
