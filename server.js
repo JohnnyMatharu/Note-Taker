@@ -58,9 +58,8 @@ console.log (req.body)
     const notes = JSON.parse(data);
     notes.push(req.body);
 console.log(notes);
-JSON.stringify(notes);
 
-  fs.writeFile("./Develop/db/db.json", data, function (err) {
+  fs.writeFile("./Develop/db/db.json", JSON.stringify(notes), function (err) {
     res.json(notes);
     if (err) {
     console.log(err);
@@ -83,7 +82,12 @@ JSON.stringify(notes);
 //DELETE
   app.delete('/api/notes/:id', function (req, res) {
     console.log(req.params.id);
-  
+    const params = [req.params.id];
+    res.json({
+      message: 'deleted',
+      changes: result.affectedRows,
+      id: req.params.id
+    });
   })
 
 
