@@ -66,7 +66,6 @@ app.delete('/api/notes/:id', function (req, res) {
   fs.readFile("./Develop/db/db.json", (err, data) => {
     if (err) throw err;
     const notesArr = JSON.parse(data);
-    res.json(notesArr);
     console.log(notesArr, 'this is test1');
 
   console.log(req.params.id, 'this is test 2');
@@ -75,17 +74,19 @@ app.delete('/api/notes/:id', function (req, res) {
   const filterArray = notesArr.filter((item) => item.id !== params);
 console.log(filterArray, 'this is test 4')
 
+res.json(filterArray);
+
 fs.writeFile('./Develop/db/db.json', JSON.stringify(filterArray), function (err) {
-  res.json(filterArray);
+
   if (err) {
     console.log(err);
   }
-res.json({
-     message: 'deleted',
-     changes: result.affectedRows,
-    id: req.params.id
+//res.json({
+  //   message: 'deleted',
+    // changes: result.affectedRows,
+   // id: req.params.id
 
-});
+//});
 
 });  
 });
