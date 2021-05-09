@@ -8,7 +8,7 @@ This application stores information from the user. Once pencil tool is clicked, 
 https://github.com/JohnnyMatharu/Note-Taker/blob/main/Screen%20Shot%202021-05-09%20at%205.55.15%20PM.png?raw=true
 
 # Links
-https://daily-note-maker.herokuapp.com/notes
+https://daily-note-maker.herokuapp.com
 https://github.com/JohnnyMatharu/Note-Taker/tree/main
 
 # Made by
