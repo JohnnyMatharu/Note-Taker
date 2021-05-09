@@ -18,11 +18,6 @@ app.get('/notes', function(req, res) {
     res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
   });
 
-//app.get('/api/animals', (req, res) => {
-  //res.send('Hello!');
-//});
-//this is in module and animals is the json storage file
-
 
 //GET
 app.get('/api/notes',(req,res)=>{
@@ -35,21 +30,7 @@ app.get('/api/notes',(req,res)=>{
 });
 });
 
-//fs.writeFile('//api//notes', (notes) =>{
 
-//}
-  //  )
-
-
-
-
-//thats how it was before 
-//app.get('/api/notes',(req,res)=>{
-//  return res.json("Hello"); 
-//}),
-
-
-//POST
 
 app.post('/api/notes',(req,res)=>{
 console.log (req.body)
@@ -70,15 +51,6 @@ console.log(notes);
 
 
 
-  
-
-
-//POST before 
-//app.post('/api/notes',(req,res)=>{
-  //res.json(req.body);
-  
-//})
-
 //DELETE
   app.delete('/api/notes/:id', function (req, res) {
     console.log(req.params.id);
@@ -91,18 +63,8 @@ console.log(notes);
   })
 
 
-
-
-
-
-
-
 app.listen(port);
 console.log('Server started at http://localhost:' + port);
-
-
-
-
 
 
 
