@@ -41,9 +41,9 @@ app.post('/api/notes', (req, res) => {
   fs.readFile('./Develop/db/db.json', (err, data) => {
     if (err) throw err;
     const notes = JSON.parse(data);
-    console.log('notes in POST', notes);
+   
     notes.push(newNote);
-    console.log('updated notes', notes);
+  
 
     fs.writeFile('./Develop/db/db.json', JSON.stringify(notes), function (err) {
       res.json(notes);
@@ -63,24 +63,33 @@ app.post('/api/notes', (req, res) => {
 
 //DELETE
 app.delete('/api/notes/:id', function (req, res) {
-  
-  
   fs.readFile("./Develop/db/db.json", (err, data) => {
     if (err) throw err;
     const notesArr = JSON.parse(data);
     res.json(notesArr);
-    console.log(notesArr);
+    console.log(notesArr, 'this is test1');
+
+  console.log(req.params.id, 'this is test 2');
+   const params = req.params.id;
+   console.log(params, 'this is test 3');
+  const filterArray = notesArr.filter((item) => item.id !== params);
+console.log(filterArray, 'this is test 4')
+
+fs.writeFile('./Develop/db/db.json', JSON.stringify(filterArray), function (err) {
+  res.json(filterArray);
+  if (err) {
+    console.log(err);
+  }
+res.json({
+     message: 'deleted',
+     changes: result.affectedRows,
+    id: req.params.id
 
 });
-  
-  // console.log(req.params.id);
-   // const params = [req.params.id];
-   // res.json({
-     // message: 'deleted',
-     // changes: result.affectedRows,
-     // id: req.params.id
-   // });
-})
+
+});  
+});
+});
 
 
 app.listen(port);
