@@ -1,9 +1,10 @@
 const fs = require('fs');
 const express = require('express')
 const path = require('path');
-const app = express()
+const app = express();
 const port = process.env.PORT || 8080;
 const { db } = require('./Develop/db/db.json');
+const { v4: uuidv4 } = require('uuid');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,35 +33,54 @@ app.get('/api/notes',(req,res)=>{
 
 
 
-app.post('/api/notes',(req,res)=>{
-console.log (req.body)
-  fs.readFile("./Develop/db/db.json", (err, data) => {
+app.post('/api/notes', (req, res) => {
+  console.log('req.body in POST /api/notes', req.body);
+  // Add a unique id to the note using uuid package
+  const newNote = { title: req.body.title, text: req.body.text, id: uuidv4() };
+  console.log('newNote with id', newNote);
+  fs.readFile('./Develop/db/db.json', (err, data) => {
     if (err) throw err;
     const notes = JSON.parse(data);
-    notes.push(req.body);
-console.log(notes);
+    console.log('notes in POST', notes);
+    notes.push(newNote);
+    console.log('updated notes', notes);
 
-  fs.writeFile("./Develop/db/db.json", JSON.stringify(notes), function (err) {
-    res.json(notes);
-    if (err) {
-    console.log(err);
-    }
+    fs.writeFile('./Develop/db/db.json', JSON.stringify(notes), function (err) {
+      res.json(notes);
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
 });
-});
-})
 
+
+//let bigCities = cities.filter(function (e) {
+  //return e.population > 3000000;
+//});
+//console.log(bigCities);
 
 
 //DELETE
-  app.delete('/api/notes/:id', function (req, res) {
-    console.log(req.params.id);
-    const params = [req.params.id];
-    res.json({
-      message: 'deleted',
-      changes: result.affectedRows,
-      id: req.params.id
-    });
-  })
+app.delete('/api/notes/:id', function (req, res) {
+  
+  
+  fs.readFile("./Develop/db/db.json", (err, data) => {
+    if (err) throw err;
+    const notesArr = JSON.parse(data);
+    res.json(notesArr);
+    console.log(notesArr);
+
+});
+  
+  // console.log(req.params.id);
+   // const params = [req.params.id];
+   // res.json({
+     // message: 'deleted',
+     // changes: result.affectedRows,
+     // id: req.params.id
+   // });
+})
 
 
 app.listen(port);
