@@ -1,8 +1,3 @@
-// the above code has been added by me
-//Check: const PORT = process.env.PORT || 3001;
-//Check middleware: app.use(express.urlencoded({ extended: false }));
-//app.use(express.json());
-//may also need to connect database by require database, check previou module (as its not mysql)
 
 let noteTitle;
 let noteText;
@@ -196,108 +191,17 @@ if (window.location.pathname === '/notes') {
 getAndRenderNotes();
 
 
-//added to activate the port so its listening to requests
-
-
-
-/*Possible route entry (not sure, check all sources)
-Lines
-
-7
-29
-37
-46
-122
-167
-175
-
-Module 11.1.1
-setup Heroku, make sure url deployed, make sure not to be loaded each time, if not what things need loaded each time
-History: root of assignment file -loaded express, npm install, npm start, npm init, gitignore modules (double check which ones are necessary for Express, check ["start": "node server.js"] under test on package.json )
-
-Please make sure the following
-(window.location.pathname === '/notes')
-Make sure connection of node.js with express.js to make sure no initial steps are missed
-
-Make sure we don't need server.js file, askbcs and show errors, make sure connection is there by end of day
-https://www.google.com/search?q=can+we+start+serverf+from+index.js&rlz=1C5CHFA_enCA860CA860&oq=can+we+start+serverf+from+index.js&aqs=chrome..69i57j33i10i160l2.9047j0j15&sourceid=chrome&ie=UTF-8
-Module: 12.2.4, Review the server.js File and previous chp, all should be running
-*/
-
-
-
-
-
 
 /*
-Acceptance criteria
-
-GIVEN a note-taking application
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-WHEN I enter a new note title and the note’s text
-THEN a Save icon appears in the navigation at the top of the page
-WHEN I click on the Save icon
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column
-WHEN I click on the Write icon in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
-
 
 Getting Started
-The application should have a db.json file on the back end that will be used to store and retrieve notes using the fs module.
-
-The following HTML routes should be created:
-
-GET /notes should return the notes.html file.
-
-GET * should return the index.html file.
-
-The following API routes should be created:
-
-GET /api/notes should read the db.json file and return all saved notes as JSON.
-
-POST /api/notes should receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
-
-
-Application front end must connect to an Express.js back end.
-
-Application back end must store notes with unique IDs in a JSON file.
-
-Application must be deployed to Heroku.
-
-
 
 How to Submit the Challenge
+
 You are required to submit BOTH of the following for review:
 
 The URL of the functional, deployed application.
 
 The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
-
-s
-
-Bonus: +10 Points
-Application allows users to delete notes.
-
-You haven’t learned how to handle DELETE requests, but this application has that functionality in the front end. As a bonus, see if you can add the DELETE route to the application using the following guideline:
-
-DELETE /api/notes/:id should receive a query parameter containing the id of a note to delete. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
-
-
-Neil:
-Mainly doing few things, all else is ready
-1. set your API routes
-2. write ad read DB json using fs read and write, delete (connections) using DB json and front end
-set connetions will activate everything as css file is large, consult module
-
-Heather:
-no develop folder
-Lading page is get started,
-In develop in public this 2nd page, just create backend
-Add note , dave icon, no edit needed, just make sure save it and display back on page, pencil is reset on right, Get started will help to get started, url of deployed app is for heroic and 2nd for GitHub, notes will show in db.json, each note has unique id, to generate id, npm package, or own way, 
 */
