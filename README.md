@@ -6,7 +6,7 @@ This is an application which works similar to notepad, saves the information for
 
 This application stores information from the user. Once pencil tool is clicked, the information is entered, after save button is pressed the information is saved on the the left hand side column as a hreading in the list. Once the user presses any object in the list, the data belonging to that appears back on right side.
 
-Tools include Node, NPM and Server
+Tools include HTML, CSS, Javascript, Node, NPM and Server
 
 # Screenshots
 https://github.com/JohnnyMatharu/Note-Taker/blob/main/Screen%20Shot%202021-05-09%20at%205.55.15%20PM.png?raw=true
